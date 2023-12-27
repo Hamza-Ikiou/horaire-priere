@@ -3,7 +3,7 @@
     <v-col cols="12">
       <p class="font-weight-bold text-uppercase">
         Horaires de prière et direction de la qibla à
-        <span> {{ville}} </span>
+        <span> {{ ville }} </span>
       </p>
     </v-col>
 

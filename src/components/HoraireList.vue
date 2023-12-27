@@ -3,10 +3,10 @@
     <v-card-title class="title align">
       <p class="font-weight-bold text-uppercase">
         Horaires de prière à
-        <span> {{ville}} </span>
+        <span> {{ ville }} </span>
       </p>
       <div class="align">
-        <p>{{dateToDisplay}}</p>
+        <p>{{ dateToDisplay }}</p>
         &nbsp;
         <v-icon icon="mdi-calendar"></v-icon>
       </div>
