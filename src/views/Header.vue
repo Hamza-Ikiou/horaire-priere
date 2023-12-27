@@ -1,7 +1,7 @@
 <template>
   <div class="header">
       <h1 class="text-uppercase">Horaires de prière</h1>
-      <p>Application offrant les horaires de prière pour les musulmans.</p>
+      <p>Application offrant les horaires de prière pour les musulmans en France.</p>
   </div>
 </template>
 
