@@ -22,18 +22,14 @@
 import {onBeforeMount, ref} from "vue";
 
   let dateToDisplay = ref('');
-  let prop = defineProps(['ville']);
+  let prop = defineProps(['ville', 'date']);
 
   onBeforeMount(() => {
-    const date = new Date();
-    dateToDisplay = date.toLocaleDateString('fr-FR', { month: 'long'}) + " " + date.getFullYear()
+    dateToDisplay = prop.date.toLocaleDateString('fr-FR', { month: 'long'}) + " " + prop.date.getFullYear()
   })
 </script>
 
 <style scoped>
-  p {
-    font-family: Gotham medium, sans-serif;
-  }
 
   span {
     font-size: 1.5rem;

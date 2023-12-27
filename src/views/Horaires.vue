@@ -3,10 +3,10 @@
     <SearchBar @update-filter="setUpFilteredVille"/>
     <v-row>
       <v-col cols="auto" md="8">
-        <HoraireList :ville="filteredVille"/>
+        <HoraireList :ville="filteredVille" :date="date"/>
       </v-col>
       <v-col cols="auto" md="4">
-        <HoraireActuelle/>
+        <HoraireActuelle :date="date"/>
       </v-col>
       <v-col cols="auto" md="4">
         <QiblaDirection/>
@@ -22,6 +22,7 @@ import HoraireList from "@/components/HoraireList.vue";
 import QiblaDirection from "@/components/QiblaDirection.vue";
 import {ref} from "vue";
 
+  let date = new Date();
   let filteredVille = ref('Montpellier');
 
   function setUpFilteredVille(ville) {
