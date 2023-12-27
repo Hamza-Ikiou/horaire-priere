@@ -7,23 +7,11 @@
       </p>
       <v-btn variant="text" append-icon="mdi-calendar">
         {{dateToDisplay}}
-        <v-dialog v-model="calendar" activator="parent" width="auto">
-          <v-card>
-            <v-card-title>
-              Choisissez un mois
-            </v-card-title>
-            <v-card-text>
-              <v-date-picker-months></v-date-picker-months>
-            </v-card-text>
-            <v-card-actions>
-              <v-btn @click="toggleCalendar">Fermer</v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
       </v-btn>
     </v-card-title>
 
     <v-card-text>
+
     </v-card-text>
   </v-card>
 </template>
@@ -31,13 +19,8 @@
 <script setup>
 import {onBeforeMount, ref} from "vue";
 
-  let dateToDisplay = '';
-  let calendar = ref(false);
-  let ville = 'Montpellier';
-
-  function toggleCalendar() {
-    calendar.value = !calendar.value;
-  }
+  let dateToDisplay = ref('');
+  let prop = defineProps(['ville']);
 
   onBeforeMount(() => {
     const date = new Date();

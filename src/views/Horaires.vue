@@ -1,9 +1,9 @@
 <template>
   <v-container fluid="true">
-    <SearchBar/>
+    <SearchBar @update-filter="setUpFilteredVille"/>
     <v-row>
       <v-col cols="auto" md="8">
-        <HoraireList/>
+        <HoraireList :ville="filteredVille"/>
       </v-col>
       <v-col cols="auto" md="4">
         <HoraireActuelle/>
@@ -20,6 +20,13 @@ import SearchBar from "@/components/SearchBar.vue";
 import HoraireActuelle from "@/components/HoraireActuelle.vue";
 import HoraireList from "@/components/HoraireList.vue";
 import QiblaDirection from "@/components/QiblaDirection.vue";
+import {ref} from "vue";
+
+  let filteredVille = ref('Montpellier');
+
+  function setUpFilteredVille(ville) {
+    filteredVille.value = ville;
+  }
 
 </script>
 

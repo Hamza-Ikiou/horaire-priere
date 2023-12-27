@@ -9,11 +9,13 @@
 
     <v-col cols="12">
       <v-text-field
+          v-model="input"
           prepend-inner-icon="mdi-map-marker"
           clear-icon="mdi-close-circle"
           :clearable="true"
           label="Ville"
           type="text"
+          @click:clear="resetVilleDefault"
       >
         <template v-slot:append-inner>
           <v-btn color="#c09d77" @click="search">Recherche</v-btn>
@@ -25,10 +27,24 @@
 </template>
 
 <script setup>
-  let ville = 'Montpellier';
+  import {ref} from "vue";
+
+  let ville = ref('Montpellier');
+  let input = ref('');
+  const emit = defineEmits(['search']);
 
   function search() {
-    console.log(ville);
+    if (!input.value || input.value.trim().length === 0) {
+      ville.value = 'Montpellier';
+    } else {
+      ville.value = input.value;
+    }
+    emit('updateFilter', ville.value);
+  }
+
+  function resetVilleDefault() {
+    ville.value = 'Montpellier';
+    emit('updateFilter', ville.value);
   }
 
 </script>
