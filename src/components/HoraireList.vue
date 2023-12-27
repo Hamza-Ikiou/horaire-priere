@@ -13,7 +13,26 @@
     </v-card-title>
 
     <v-card-text>
+      <v-table>
+        <thead>
+        <tr>
+          <th>Date</th>
+          <th>Sobh (Fajr)</th>
+          <th>Chorouq</th>
+          <th>Dhohr</th>
+          <th>Asr</th>
+          <th>Maghrib</th>
+          <th>Isha</th>
+        </tr>
+        </thead>
 
+        <tbody>
+        <tr v-for="item in items" :key="item.title">
+          <td>{{ item.title }}</td>
+          <td>{{ item.time }}</td>
+        </tr>
+        </tbody>
+      </v-table>
     </v-card-text>
   </v-card>
 </template>
