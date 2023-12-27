@@ -5,9 +5,11 @@
         Horaires de prière à
         <span> {{ville}} </span>
       </p>
-      <v-btn variant="text" append-icon="mdi-calendar">
-        {{dateToDisplay}}
-      </v-btn>
+      <div class="align">
+        <p>{{dateToDisplay}}</p>
+        &nbsp;
+        <v-icon icon="mdi-calendar"></v-icon>
+      </div>
     </v-card-title>
 
     <v-card-text>
