@@ -9,7 +9,13 @@
     <v-divider></v-divider>
 
     <div class="pt-0">
-      Application faite avec <strong>Vuetify</strong> et <strong>Vue.js</strong>
+      Application faite avec <strong>Vuetify</strong> et <strong>Vue.js</strong> par <strong>Hamza Ikiou</strong>
+    </div>
+    <div class="pt-0">
+      Cette version est uniquement basée sur les horaires de prière en <strong>France</strong>.
+    </div>
+    <div class="pt-0">
+      Les données sont récupérées depuis l'API <a href="https://aladhan.com/prayer-times-api" target="_blank">https://aladhan.com/prayer-times-api</a>.
     </div>
   </v-footer>
 </template>
