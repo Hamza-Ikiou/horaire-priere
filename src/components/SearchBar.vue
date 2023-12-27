@@ -9,7 +9,6 @@
 
     <v-col cols="12">
       <v-text-field
-          v-model="ville"
           prepend-inner-icon="mdi-map-marker"
           clear-icon="mdi-close-circle"
           :clearable="true"
