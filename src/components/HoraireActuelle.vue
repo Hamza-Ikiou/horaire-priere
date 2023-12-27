@@ -5,9 +5,9 @@
     </v-card-title>
 
     <v-card-text>
-        <div class="align" v-for="item in items" :key="item.title">
-          <p>{{ item.title }}</p>
-          <span>{{ item.time }}</span>
+        <div class="align" v-for="(value, key) in horairesActuelles" :key="key">
+          <p>{{ key }}</p>
+          <span>{{ value }}</span>
         </div>
     </v-card-text>
   </v-card>
@@ -18,15 +18,6 @@ import {onBeforeMount, ref} from "vue";
 
   const props = defineProps(['date', 'horairesActuelles']);
   let dateToDisplay = ref('');
-
-  const items = [
-    { title: 'Sobh (Fajr)', time: '05:00'},
-    { title: 'Chorouq', time: '05:00'},
-    { title: 'Dhohr', time: '13:00'},
-    { title: 'Asr', time: '17:00'},
-    { title: 'Maghrib', time: '20:00'},
-    { title: 'Isha', time: '22:00'},
-  ]
 
   onBeforeMount(() => {
     dateToDisplay = props.date.toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' });

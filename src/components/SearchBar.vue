@@ -37,16 +37,15 @@
   function search() {
     if (!input.value || input.value.trim().length === 0) {
       ville.value = store.getters.getDefaultLocalisation;
+      emit('updateFilter', undefined);
     } else {
       ville.value = input.value;
-      store.dispatch('fetchHoraires', ville.value);
+      emit('updateFilter', ville.value);
     }
-    emit('updateFilter', ville.value);
   }
 
   function resetHoraires() {
     ville.value = store.getters.getDefaultLocalisation;
-    store.dispatch('fetchHoraires');
     emit('updateFilter', ville.value);
   }
 

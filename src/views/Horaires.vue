@@ -6,7 +6,7 @@
         <HoraireList :ville="filteredVille" :date="date"/>
       </v-col>
       <v-col cols="auto" md="4">
-        <HoraireActuelle :date="date"/>
+        <HoraireActuelle :date="date" :horaires-actuelles="store.getters.getHorairesDuJour.timings"/>
       </v-col>
       <v-col cols="auto" md="4">
         <QiblaDirection/>
@@ -28,6 +28,7 @@ import store from "@/store";
 
   function setUpFilteredVille(ville) {
     filteredVille.value = ville;
+    store.dispatch('fetchHoraires', ville);
   }
 
 </script>

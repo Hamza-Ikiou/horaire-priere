@@ -43,6 +43,16 @@ export default createStore({
                 }
             });
             context.commit("setHorairesDuMois", response.data.data);
+
+            for (let horaire of context.getters.getHorairesDuMois) {
+                let object = horaire.timings;
+                ["Sunrise", "Sunset", "Imsak", "Midnight", "Firstthird", "Lastthird"].forEach(e => delete object[e]);
+                for (let key in object) {
+                    object[key] = object[key].replace(" (CEST)", "");
+                    object[key] = object[key].replace(" (CET)", "");
+                }
+            }
+
             const horairesDuJour = response.data.data.find((item) => {
                 let today = new Date();
                 let day = today.getDate() < 10 ? '0' + today.getDate() : today.getDate();
