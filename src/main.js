@@ -8,4 +8,4 @@ loadFonts()
 
 createApp(App).use(vuetify).use(store).mount('#app')
 
-store.dispatch("fetchHorairesDuMois");
+store.dispatch("fetchHoraires");

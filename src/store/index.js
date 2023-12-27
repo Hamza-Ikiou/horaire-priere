@@ -35,10 +35,10 @@ export default createStore({
         }
     },
     actions: {
-        async fetchHorairesDuMois(context, filter) {
+        async fetchHoraires(context, city) {
             const response = await axios.get("http://api.aladhan.com/v1/calendarByCity", {
                 params: {
-                    city: filter && filter.city ? filter.city : context.getters.getDefaultLocalisation,
+                    city: city ? city : context.getters.getDefaultLocalisation,
                     country: 'France',
                 }
             });

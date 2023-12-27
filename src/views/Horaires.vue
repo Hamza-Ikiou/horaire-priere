@@ -21,9 +21,10 @@ import HoraireActuelle from "@/components/HoraireActuelle.vue";
 import HoraireList from "@/components/HoraireList.vue";
 import QiblaDirection from "@/components/QiblaDirection.vue";
 import {ref} from "vue";
+import store from "@/store";
 
   let date = new Date();
-  let filteredVille = ref('Montpellier');
+  let filteredVille = ref(store.getters.getDefaultLocalisation);
 
   function setUpFilteredVille(ville) {
     filteredVille.value = ville;

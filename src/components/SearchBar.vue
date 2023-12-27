@@ -15,7 +15,7 @@
           :clearable="true"
           label="Ville"
           type="text"
-          @click:clear="resetVilleDefault"
+          @click:clear="resetHoraires"
       >
         <template v-slot:append-inner>
           <v-btn color="#c09d77" @click="search">Recherche</v-btn>
@@ -28,6 +28,7 @@
 
 <script setup>
   import {ref} from "vue";
+  import store from "@/store";
 
   let ville = ref('Montpellier');
   let input = ref('');
@@ -35,15 +36,17 @@
 
   function search() {
     if (!input.value || input.value.trim().length === 0) {
-      ville.value = 'Montpellier';
+      ville.value = store.getters.getDefaultLocalisation;
     } else {
       ville.value = input.value;
+      store.dispatch('fetchHoraires', ville.value);
     }
     emit('updateFilter', ville.value);
   }
 
-  function resetVilleDefault() {
-    ville.value = 'Montpellier';
+  function resetHoraires() {
+    ville.value = store.getters.getDefaultLocalisation;
+    store.dispatch('fetchHoraires');
     emit('updateFilter', ville.value);
   }
 
