@@ -15,21 +15,22 @@
     <v-card-text>
       <v-table>
         <thead>
-        <tr>
-          <th>Date</th>
-          <th>Sobh (Fajr)</th>
-          <th>Chorouq</th>
-          <th>Dhohr</th>
-          <th>Asr</th>
-          <th>Maghrib</th>
-          <th>Isha</th>
-        </tr>
+          <tr>
+            <th></th>
+            <th class="font-weight-bold" v-for="(value, key) in store.getters.getHorairesDuJour.timings" :key="key">
+              {{ key }}
+            </th>
+          </tr>
         </thead>
 
         <tbody>
-        <tr v-for="item in items" :key="item.title">
-          <td>{{ item.title }}</td>
-          <td>{{ item.time }}</td>
+        <tr v-for="(value, key) in horairesMensuellles" :key="key">
+          <td class="firstTd">{{ dateForTable(value.date.readable) }}</td>
+          <td>{{ value.timings.Fajr }}</td>
+          <td>{{ value.timings.Dhuhr }}</td>
+          <td>{{ value.timings.Asr }}</td>
+          <td>{{ value.timings.Maghrib }}</td>
+          <td>{{ value.timings.Isha }}</td>
         </tr>
         </tbody>
       </v-table>
@@ -39,13 +40,19 @@
 
 <script setup>
 import {onBeforeMount, ref} from "vue";
+import store from "@/store";
 
   let dateToDisplay = ref('');
-  let prop = defineProps(['ville', 'date']);
+  let prop = defineProps(['ville', 'date', 'horairesMensuellles']);
 
   onBeforeMount(() => {
     dateToDisplay = prop.date.toLocaleDateString('fr-FR', { month: 'long'}) + " " + prop.date.getFullYear()
   })
+
+  function dateForTable(date) {
+    let dateToFormat = new Date(date)
+    return dateToFormat.toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric', month: 'short'});
+  }
 </script>
 
 <style scoped>
@@ -62,5 +69,17 @@ import {onBeforeMount, ref} from "vue";
   .align{
     display: flex;
     justify-content: space-between;
+  }
+
+  tr, td{
+    font-size: 1.5rem;
+  }
+
+  td {
+    color: #c09d77;
+  }
+
+  .firstTd {
+    color: black;
   }
 </style>

@@ -3,7 +3,7 @@
     <SearchBar @update-filter="setUpFilteredVille"/>
     <v-row>
       <v-col cols="auto" md="8">
-        <HoraireList :ville="filteredVille" :date="date"/>
+        <HoraireList :ville="filteredVille" :date="date" :horaires-mensuellles="store.getters.getHorairesDuMois"/>
       </v-col>
       <v-col cols="auto" md="4">
         <HoraireActuelle :date="date" :horaires-actuelles="store.getters.getHorairesDuJour.timings"/>

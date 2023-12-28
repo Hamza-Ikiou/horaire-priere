@@ -42,6 +42,6 @@ import {onBeforeMount, ref} from "vue";
 
   p, span {
     font-size: 1.5rem;
-    margin: 10px;
+    margin: 15px;
   }
 </style>
