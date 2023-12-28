@@ -13,7 +13,7 @@
     </v-card-title>
 
     <v-card-text>
-      <v-table>
+      <v-table class="table">
         <thead>
           <tr>
             <th></th>
@@ -24,14 +24,14 @@
         </thead>
 
         <tbody>
-        <tr v-for="(value, key) in horairesMensuellles" :key="key">
-          <td class="firstTd">{{ dateForTable(value.date.readable) }}</td>
-          <td>{{ value.timings.Fajr }}</td>
-          <td>{{ value.timings.Dhuhr }}</td>
-          <td>{{ value.timings.Asr }}</td>
-          <td>{{ value.timings.Maghrib }}</td>
-          <td>{{ value.timings.Isha }}</td>
-        </tr>
+          <tr v-for="(value, key) in horairesMensuellles" :key="key" :class="checkRowToday(value.date.gregorian.date)">
+            <td class="firstTd">{{ dateForTable(value.date.readable) }}</td>
+            <td>{{ value.timings.Fajr }}</td>
+            <td>{{ value.timings.Dhuhr }}</td>
+            <td>{{ value.timings.Asr }}</td>
+            <td>{{ value.timings.Maghrib }}</td>
+            <td>{{ value.timings.Isha }}</td>
+          </tr>
         </tbody>
       </v-table>
     </v-card-text>
@@ -53,6 +53,16 @@ import store from "@/store";
     let dateToFormat = new Date(date)
     return dateToFormat.toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric', month: 'short'});
   }
+
+  function checkRowToday(item) {
+    let today = new Date();
+    let day = today.getDate() < 10 ? "0" + today.getDate() : today.getDate();
+    let date = day + "-" + (today.getMonth() + 1) + "-" + today.getFullYear();
+    if (item === date) {
+      return 'customRow';
+    }
+  }
+
 </script>
 
 <style scoped>
@@ -71,15 +81,20 @@ import store from "@/store";
     justify-content: space-between;
   }
 
-  tr, td{
+  tr {
     font-size: 1.5rem;
   }
 
   td {
+    font-size: 1.3rem;
     color: #c09d77;
   }
 
   .firstTd {
     color: black;
+  }
+
+  .customRow {
+    box-shadow: 0 0 10px #087233;
   }
 </style>
