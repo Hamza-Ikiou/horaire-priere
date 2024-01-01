@@ -16,6 +16,7 @@
           label="Ville"
           type="text"
           @click:clear="resetHoraires"
+          @keydown.enter="search"
       >
         <template v-slot:append-inner>
           <v-btn color="#c09d77" @click="search">Recherche</v-btn>
