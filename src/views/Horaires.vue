@@ -7,9 +7,8 @@
       </v-col>
       <v-col cols="auto" md="4">
         <HoraireActuelle :date="date" :horaires-actuelles="store.getters.getHorairesDuJour.timings"/>
-      </v-col>
-      <v-col cols="auto" md="4">
-        <QiblaDirection/>
+        <br/>
+        <QiblaDirection :ville="filteredVille" :qibla-direction="store.getters.getDirection"/>
       </v-col>
     </v-row>
   </v-container>

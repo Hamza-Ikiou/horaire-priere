@@ -5,7 +5,8 @@ export default createStore({
     state: {
         defaultLocalisation: 'Montpellier',
         horairesDuMois: [],
-        horairesDuJour: {}
+        horairesDuJour: {},
+        direction: 0,
     },
     getters: {
         getDefaultLocalisation(state) {
@@ -22,6 +23,11 @@ export default createStore({
             if (state.horairesDuJour) {
                 return state.horairesDuJour;
             }
+        },
+        getDirection(state) {
+            if (state.direction) {
+                return state.direction;
+            }
         }
     },
     mutations: {
@@ -32,17 +38,22 @@ export default createStore({
         setHorairesDuJour(state, horaires) {
             state.horairesDuJour = horaires;
             localStorage.setItem('horairesDuJour', JSON.stringify(horaires));
-        }
+        },
+        setDirection(state, direction) {
+            state.direction = direction;
+            localStorage.setItem('direction', JSON.stringify(direction));
+        },
     },
     actions: {
         async fetchHoraires(context, city) {
-            const response = await axios.get("http://api.aladhan.com/v1/calendarByCity", {
+
+            const horaires = await axios.get("http://api.aladhan.com/v1/calendarByCity", {
                 params: {
                     city: city ? city : context.getters.getDefaultLocalisation,
                     country: 'France',
                 }
             });
-            context.commit("setHorairesDuMois", response.data.data);
+            context.commit("setHorairesDuMois", horaires.data.data);
 
             for (let horaire of context.getters.getHorairesDuMois) {
                 let object = horaire.timings;
@@ -62,6 +73,15 @@ export default createStore({
             });
 
             context.commit("setHorairesDuJour", horairesDuJour);
+
+            const direction = await axios.get(
+                "http://api.aladhan.com/v1/qibla/" +
+                context.getters.getHorairesDuJour.meta.latitude + "/" +
+                context.getters.getHorairesDuJour.meta.longitude
+            );
+
+            const roundedDirection = Math.round(direction.data.data.direction);
+            context.commit("setDirection", roundedDirection);
         }
     },
 });
