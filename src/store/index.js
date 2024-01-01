@@ -53,12 +53,14 @@ export default createStore({
                 }
             }
 
-            const horairesDuJour = response.data.data.find((item) => {
+            const horairesDuJour = context.getters.getHorairesDuMois.find((item) => {
                 let today = new Date();
                 let day = today.getDate() < 10 ? '0' + today.getDate() : today.getDate();
-                let date = day + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
+                let month = today.getMonth() + 1 < 10 ? '0' + (today.getMonth() + 1) : today.getMonth() + 1;
+                let date = day + '-' + month + '-' + today.getFullYear();
                 return item.date.gregorian.date === date;
             });
+
             context.commit("setHorairesDuJour", horairesDuJour);
         }
     },
