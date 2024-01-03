@@ -24,7 +24,7 @@
         </thead>
 
         <tbody>
-          <tr v-for="(value, key) in horairesMensuellles" :key="key" :class="checkRowToday(value.date.gregorian.date)">
+          <tr v-for="(value, key) in horairesMensuellles" :key="key" :style="checkRowToday(value.date.gregorian.date)">
             <td class="firstTd">{{ dateForTable(value.date.readable) }}</td>
             <td>{{ value.timings.Fajr }}</td>
             <td>{{ value.timings.Dhuhr }}</td>
@@ -60,7 +60,7 @@ import store from "@/store";
     let month = today.getMonth() + 1 < 10 ? "0" + (today.getMonth() + 1) : today.getMonth() + 1;
     let date = day + "-" + month + "-" + today.getFullYear();
     if (item === date) {
-      return 'customRow';
+      return {'box-shadow': '0 0 10px #087233'};
     }
   }
 
@@ -93,9 +93,5 @@ import store from "@/store";
 
   .firstTd {
     color: black;
-  }
-
-  .customRow {
-    box-shadow: 0 0 10px #087233;
   }
 </style>
