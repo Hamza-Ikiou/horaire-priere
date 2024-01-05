@@ -1,5 +1,7 @@
 # Vuejs Application
 
+![alt text](screen/screen-horaires.png)
+
 This application was developed with Vuejs and Vuetify. It is a simple application that displays the prayer times. The prayer times are fetched from the [Aladhan API](https://aladhan.com).
 
 ## Installation
