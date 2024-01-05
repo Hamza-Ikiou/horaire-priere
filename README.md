@@ -1,24 +1,28 @@
-# horaire-priere
+# Vuejs Application
 
-## Project setup
+This application was developed with Vuejs and Vuetify. It is a simple application that displays the prayer times. The prayer times are fetched from the [Aladhan API](https://aladhan.com).
+
+## Installation
+
+After cloning the project, follow these steps:
+
+- Go to the project directory:
+
+```bash
+cd horaire-priere
 ```
+
+- Install the dependencies:
+
+```bash
 npm install
 ```
 
-### Compiles and hot-reloads for development
-```
+## Start the application
+
+Once the installation is complete, you can start the application with the following command:
+
+```bash
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
